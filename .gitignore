@@ -1,0 +1,8 @@
+# props
+!*.properties
+*.log
+.idea
+target
+node_modules
+node
+/src/main/resources/static
