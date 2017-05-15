@@ -1,4 +1,4 @@
-package tsakiris.fotis.async.engine;
+package tsakiris.fotis.async.engine.common;
 
 public class Consts {
 

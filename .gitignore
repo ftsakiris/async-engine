@@ -5,4 +5,5 @@
 target
 node_modules
 node
+*.iml
 /src/main/resources/static

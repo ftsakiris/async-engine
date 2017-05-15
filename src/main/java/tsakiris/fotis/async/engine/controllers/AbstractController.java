@@ -3,7 +3,7 @@ package tsakiris.fotis.async.engine.controllers;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import tsakiris.fotis.async.engine.Consts;
+import tsakiris.fotis.async.engine.common.Consts;
 
 public abstract class AbstractController<T> {
 
