@@ -40,6 +40,7 @@ public class TaskControllerTest extends AbstractControllerTest {
                 .contentType(contentTypeJson)
                 .content(json(new Task(
                         null,
+                        null,
                         "http",
                         "google.com",
                         "",
@@ -61,6 +62,7 @@ public class TaskControllerTest extends AbstractControllerTest {
                 .contentType(contentTypeJson)
                 .content(json(new Task(
                         null,
+                        null,
                         "http",
                         "httpbin.org",
                         "/ip",
@@ -81,6 +83,7 @@ public class TaskControllerTest extends AbstractControllerTest {
                 .header(Consts.APPLICATION_HEADER, Consts.APP_NAME)
                 .contentType(contentTypeJson)
                 .content(json(new Task(
+                        null,
                         Arrays.asList(new KeyValue("Content-Type", "application/json")),
                         "http",
                         "localhost",

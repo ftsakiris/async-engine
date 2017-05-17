@@ -8,6 +8,7 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 public class Task {
+    private final String id;
     private final List<KeyValue> headers;
     private final String protocol;
     private final String domain;

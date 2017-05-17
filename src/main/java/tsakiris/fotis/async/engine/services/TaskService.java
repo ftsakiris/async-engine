@@ -8,7 +8,7 @@ import static tsakiris.fotis.async.engine.common.Consts.JMS_DESTINATION;
 @Service
 public class TaskService extends AbstractService {
 
-    public Task sendToJms(Task task) {
+    public Task create(Task task) {
         getJmsTemplate().convertAndSend(JMS_DESTINATION, task);
         return task;
     }
