@@ -3,21 +3,16 @@ package tsakiris.fotis.async.engine.services;
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
 import com.mashape.unirest.http.exceptions.UnirestException;
-import com.mashape.unirest.request.GetRequest;
-import com.mashape.unirest.request.HttpRequest;
-import com.mashape.unirest.request.HttpRequestWithBody;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-import tsakiris.fotis.async.engine.common.CommonUtils;
 import tsakiris.fotis.async.engine.common.JsonHelper;
 import tsakiris.fotis.async.engine.domain.Method;
-import tsakiris.fotis.async.engine.domain.KeyValue;
 import tsakiris.fotis.async.engine.domain.Task;
 
-import java.util.List;
-
-import static tsakiris.fotis.async.engine.common.Converter.urlConverter;
+import static tsakiris.fotis.async.engine.common.UrlConverter.addHeaders;
+import static tsakiris.fotis.async.engine.common.UrlConverter.addQueryParams;
+import static tsakiris.fotis.async.engine.common.UrlConverter.urlConverter;
 
 @Service
 public class HttpRequestService {
@@ -55,33 +50,5 @@ public class HttpRequestService {
         return JsonHelper.convert(httpResponse);
     }
 
-    private HttpRequestWithBody addQueryParams(HttpRequestWithBody httpRequest, List<KeyValue> queryParams) {
-        return (HttpRequestWithBody) addQueryParamsSuper(httpRequest, queryParams);
-    }
 
-    private GetRequest addQueryParams(GetRequest httpRequest, List<KeyValue> queryParams) {
-        return (GetRequest) addQueryParamsSuper(httpRequest, queryParams);
-    }
-
-    private HttpRequest addQueryParamsSuper(HttpRequest httpRequest, List<KeyValue> queryParams) {
-        if (CommonUtils.isNotEmpty(queryParams)) {
-            queryParams.forEach(queryParam -> httpRequest.queryString(queryParam.getKey(), queryParam.getValue()));
-        }
-        return httpRequest;
-    }
-
-    private HttpRequestWithBody addHeaders(HttpRequestWithBody httpRequest, List<KeyValue> headers) {
-        return (HttpRequestWithBody) addHeadersSuper(httpRequest, headers);
-    }
-
-    private GetRequest addHeaders(GetRequest httpRequest, List<KeyValue> headers) {
-        return (GetRequest) addHeadersSuper(httpRequest, headers);
-    }
-
-    private HttpRequest addHeadersSuper(HttpRequest httpRequest, List<KeyValue> headers) {
-        if (CommonUtils.isNotEmpty(headers)) {
-            headers.forEach(header -> httpRequest.header(header.getKey(), header.getValue()));
-        }
-        return httpRequest;
-    }
 }

@@ -17,4 +17,12 @@ public class Consts {
     public static final String JMS_DESTINATION = "tasks";
 
     public static final String ASYNC_ENGINE_FACTORY = "asyncEngineFactory";
+
+    public static final String SERVER_IP = "server.ip";
+
+    public static final String SERVER_PORT = "server.port";
+
+    public static final String SERVER_CONTEXT_PATH = "server.contextPath";
+
+    public static final String DEFAULT_PROTOCOL = "http";
 }

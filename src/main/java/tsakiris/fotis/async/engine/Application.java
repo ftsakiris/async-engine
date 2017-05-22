@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jms.DefaultJmsListenerContainerFactoryConfigurer;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.rest.webmvc.config.RepositoryRestMvcConfiguration;
 import org.springframework.jms.annotation.EnableJms;
 import org.springframework.jms.config.DefaultJmsListenerContainerFactory;
 import org.springframework.jms.config.JmsListenerContainerFactory;
@@ -24,7 +25,7 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @SpringBootApplication
 @EnableSwagger2
 @EnableJms
-public class Application {
+public class Application extends RepositoryRestMvcConfiguration {
 
     public static ConfigurableApplicationContext configurableApplicationContext;
 

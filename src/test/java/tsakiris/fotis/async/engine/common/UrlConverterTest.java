@@ -7,11 +7,11 @@ import tsakiris.fotis.async.engine.domain.KeyValue;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ConverterTest {
+public class UrlConverterTest {
 
     @Test
     public void urlConverter() throws Exception {
-        Assert.assertEquals("http://www.google.com:80/search", Converter.urlConverter("http", "www.google.com", "80", "/search"));
+        Assert.assertEquals("http://www.google.com:80/search", UrlConverter.urlConverter("http", "www.google.com", "80", "/search"));
     }
 
     @Test
@@ -20,7 +20,7 @@ public class ConverterTest {
         queryParams.add(new KeyValue("name", "fotakos"));
         queryParams.add(new KeyValue("name", "Aleksakos"));
         queryParams.add(new KeyValue("filter", "pre"));
-        Assert.assertEquals("?name=fotakos&name=Aleksakos&filter=pre", Converter.queryParamsConverter(queryParams));
+        Assert.assertEquals("?name=fotakos&name=Aleksakos&filter=pre", UrlConverter.queryParamsConverter(queryParams));
     }
 
 }
