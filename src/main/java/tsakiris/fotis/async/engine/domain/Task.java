@@ -1,19 +1,14 @@
 package tsakiris.fotis.async.engine.domain;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@AllArgsConstructor
 @Getter
 @Document
-public class Task {
+public class Task extends AbstractTask{
 
-    @Id
-    private final String id;
     private final String description;
     private final List<KeyValue> headers;
     private final String protocol;
@@ -23,4 +18,17 @@ public class Task {
     private final Method method;
     private final List<KeyValue> queryParams;
     private final String body;
+
+    public Task(String id, String description, List<KeyValue> headers, String protocol, String domain, String resourcePath, String port, Method method, List<KeyValue> queryParams, String body) {
+        super(id);
+        this.description = description;
+        this.headers = headers;
+        this.protocol = protocol;
+        this.domain = domain;
+        this.resourcePath = resourcePath;
+        this.port = port;
+        this.method = method;
+        this.queryParams = queryParams;
+        this.body = body;
+    }
 }

@@ -14,7 +14,7 @@ public class TaskService extends AbstractService {
     private TaskRepository taskRepository;
 
     public Task create(Task task) {
-        taskRepository.save(task);
+        taskRepository.saveTask(task);
         getJmsTemplate().convertAndSend(JMS_DESTINATION, task);
         return task;
     }

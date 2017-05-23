@@ -126,7 +126,7 @@ public class CommonUtils {
         return collection.iterator().next();
     }
 
-    public static String generateUUID() {
+    public synchronized static String generateUUID() {
         return UUID.randomUUID().toString();
     }
 

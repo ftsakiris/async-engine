@@ -15,7 +15,9 @@ import org.springframework.stereotype.Component;
 import tsakiris.fotis.async.engine.common.CommonUtils;
 import tsakiris.fotis.async.engine.domain.QuartzJob;
 import tsakiris.fotis.async.engine.domain.ScheduledTask;
+import tsakiris.fotis.async.engine.domain.Task;
 import tsakiris.fotis.async.engine.persistence.ScheduledTaskRepository;
+import tsakiris.fotis.async.engine.persistence.TaskRepository;
 
 import java.text.ParseException;
 import java.util.Hashtable;
@@ -39,6 +41,9 @@ public class ScheduledTaskService extends AbstractService {
     @Autowired
     private ScheduledTaskRepository scheduledTaskRepository;
 
+    @Autowired
+    private TaskRepository taskRepository;
+
     private Map<String, String> properties;
 
     public ScheduledTaskService() throws SchedulerException {
@@ -52,7 +57,7 @@ public class ScheduledTaskService extends AbstractService {
 
     public ScheduledTask create(ScheduledTask scheduledTask) {
         try {
-            scheduledTaskRepository.save(scheduledTask);
+            scheduledTaskRepository.saveTask(scheduledTask);
             createQuartzJob(scheduledTask);
         } catch (SchedulerException | ParseException e) {
             LOGGER.error("SchedulerException | ParseException", e);
@@ -62,6 +67,7 @@ public class ScheduledTaskService extends AbstractService {
 
     private void createQuartzJob(ScheduledTask scheduledTask) throws SchedulerException, ParseException {
         initProperties();
+
         // define the job and tie it to our QuartzJob class
         final JobDetail job = newJob(QuartzJob.class)
                 .withIdentity(genJobKey(scheduledTask))
@@ -69,7 +75,10 @@ public class ScheduledTaskService extends AbstractService {
 
         job.getJobDataMap().put(Map.class.getCanonicalName(), properties);
 
-        final CronExpression cronExpression = new CronExpression(parseQuartzCron("* * * * *"));
+        final Task task = taskRepository.findOne(scheduledTask.getTaskId());
+        job.getJobDataMap().put(Task.class.getCanonicalName(), task);
+
+        final CronExpression cronExpression = new CronExpression(parseQuartzCron(scheduledTask.getCron()));
 
         final Trigger trigger = newTrigger()
                 .withIdentity(genTriggerKey(scheduledTask))
