@@ -16,4 +16,5 @@ public abstract class AbstractTask {
     @Id
     @JsonIgnore
     private String id;
+    private String description;
 }

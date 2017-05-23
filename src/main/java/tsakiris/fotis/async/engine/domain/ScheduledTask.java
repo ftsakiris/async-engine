@@ -8,27 +8,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ScheduledTask extends AbstractTask {
 
     private final String taskId;
-    private final String description;
     private final String cron;
 
     public ScheduledTask() {
-        super();
-        this.taskId = null;
-        this.description = null;
-        this.cron = null;
+        this(null, null, null, null);
     }
 
-    public ScheduledTask(String id, String taskId, String description, String cron) {
-        super(id);
+    public ScheduledTask(String id, String description, String taskId, String cron) {
+        super(id, description);
         this.taskId = taskId;
-        this.description = description;
         this.cron = cron;
     }
 
-    public ScheduledTask(String taskId, String description, String cron) {
-        super();
-        this.taskId = taskId;
-        this.description = description;
-        this.cron = cron;
+    public ScheduledTask(String description, String taskId, String cron) {
+        this(null, description, taskId, cron);
     }
 }

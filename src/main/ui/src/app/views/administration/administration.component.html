@@ -1,0 +1,74 @@
+<hr>
+<div class="row">
+  <div class="col-md-5">
+    <div class="container">
+      <p><b>Δεδομένα:</b></p>
+      <!--<form>-->
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="sendData.isMaterialChecked" (ngModelChange)="updateClientSettings($event)">
+            Ομάδα Ειδών
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="sendData.isTraderChecked" (ngModelChange)="updateClientSettings($event)">
+            Ομάδα Συναλλασομένων
+          </label>
+        </div>
+        <div class="form-check">
+          <label class="form-check-label">
+            <input class="form-check-input" type="checkbox" [(ngModel)]="sendData.isTransactionChecked" (ngModelChange)="updateClientSettings($event)">
+            Ομάδα Παραστατικών
+          </label>
+        </div>
+      <!--</form>-->
+    </div>
+  </div>
+  <div class="col-md-5">
+    <div class="container">
+      <p><b>Ενέργεια:</b></p>
+      <div *ngIf="sendCheckBoxChecked"></div>
+      <template [ngIf]="sendCheckBoxChecked">
+        <div><button [disabled]="isInProgress()" type="button" (click)="onClickSend()" class="btn btn">Αποστολή</button></div>
+      </template>
+      <br>
+      <div *ngIf="retrieveCheckBoxChecked"></div>
+      <template [ngIf]="retrieveCheckBoxChecked">
+        <div><button [disabled]="isInProgress()" type="button" (click)="onClickRetrieve()" class="btn btn">Λήψη</button></div>
+      </template>
+
+    </div>
+  </div>
+  <div class="col-md-2" >
+    <!--{{status}}-->
+    <div id="container"></div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="container">
+    <div class="col-md-9">
+    <textarea id='administration-consoleLog' disabled rows="10" class="form-control" [ngModel]="consoleLog.data" >
+    </textarea>
+    </div>
+    <div class="col-md-3">
+    <textarea disabled rows="10" class="form-control" [ngModel]="pending">
+    </textarea>
+    </div>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="container">
+    <div class="col-md-4" >
+      Τελευταίος Συγχρονισμός: {{lastSync}}
+    </div>
+    <div class="col-md-4" >
+      Api Server: {{apiServer}}
+    </div>
+    <div class="col-md-4" >
+      Βάση Δεδομένων: {{database}}
+    </div>
+  </div>
+</div>

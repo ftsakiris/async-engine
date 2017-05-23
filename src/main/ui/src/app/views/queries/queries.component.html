@@ -1,0 +1,25 @@
+
+<p-growl [value]="msgs"></p-growl>
+
+<p-dialog header="Επεξεργασία Ερωτήματος " [(visible)]="displayEditQuery" >
+  <p-header>
+    {{selectedQueryKey}}
+  </p-header>
+  <textarea rows="13" cols="100" class="form-control" [(ngModel)]="selectedQueryValue">
+    </textarea>
+  <p-footer>
+    <button type="text" (click)="saveQuery()" pButton icon="fa-floppy-o" label="Αποθήκευση"></button>
+    <button type="text" (click)="closeEditQueryDialog()" pButton icon="fa-window-close" label="Κλείσιμο"></button>
+  </p-footer>
+</p-dialog>
+
+<p-dataTable [value]="queries" selectionMode="single" [(selection)]="selectedQuery" (onRowSelect)="showEditQueryDialog($event)" dataKey="key">
+  <!--<p-header> Ερωτήματα </p-header>-->
+  <p-column field="key" header="Οντότητα" sortable="true" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains"></p-column>
+  <p-column field="value" header="Ερώτημα" [filter]="true" filterPlaceholder="Search" filterMatchMode="contains" >
+    <template pTemplate="header">
+      <button type="button" pButton (click)="refresh()" icon="fa-refresh"></button>
+    </template>
+  </p-column>
+
+</p-dataTable>

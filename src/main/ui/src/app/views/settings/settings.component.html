@@ -1,0 +1,94 @@
+<p-growl [value]="msgs"></p-growl>
+
+<form [formGroup]="settingsForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="apiServerName">Api Server Host Name</label>
+        <input type="text"
+               class="form-control"
+               id="apiServerName"
+               formControlName="apiServerName">
+      </div>
+      <div class="form-check hidden">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox">
+          Ενεργοποίηση Λήψης
+        </label>
+      </div>
+      <div class="form-check hidden">
+        <label class="form-check-label">
+          <input class="form-check-input" type="checkbox">
+          Ενεργοποίηση Αποστολής
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>Τύπος Βάσης Δεδομένων</label>
+      <div class="radio" *ngFor="let dbType of dbTypes">
+        <label>
+          <input type="radio" formControlName="dbTypes" [value]="dbType">{{dbType}}
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <label>Εμπορική Εφαρμογή</label>
+      <div class="radio" *ngFor="let backoffice of backoffices">
+        <label>
+          <input type="radio" formControlName="backoffices" [value]="backoffice">{{backoffice}}
+        </label>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="form-group">
+        <label for="dbName">Όνομα Βάσης</label>
+        <input type="text"
+               class="form-control"
+               id="dbName"
+               formControlName="dbName">
+      </div>
+      <div class="form-group">
+        <label for="dbUserName">Όνομα Χρήστη Βάσης</label>
+        <input type="text"
+               class="form-control"
+               id="dbUserName"
+               formControlName="dbUserName">
+      </div>
+      <div class="form-group">
+        <label for="dbUserPassName">Password Χρήστη Βάσης</label>
+        <input type="text"
+               class="form-control"
+               id="dbUserPassName"
+               formControlName="dbUserPassName">
+      </div>
+      <div class="form-group">
+        <label for="dbHostName">Host Name Βάσης</label>
+        <input type="text"
+               class="form-control"
+               id="dbHostName"
+               formControlName="dbHostName">
+      </div>
+      <div class="form-group">
+        <label for="dbInstanceName">Instance Βάσης</label>
+        <input type="text"
+               class="form-control"
+               id="dbInstanceName"
+               formControlName="dbInstanceName">
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-2 navbar-right">
+      <button type="submit" class="btn btn-primary" [disabled]="settingsForm.invalid">Αποθήκευση</button>
+    </div>
+    <div class="col-md-2 navbar-right hidden">
+      <button type="button" class="btn btn-danger">Επαναφορά</button>
+    </div>
+  </div>
+</form>
+
+
