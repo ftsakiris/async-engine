@@ -7,14 +7,13 @@ import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import tsakiris.fotis.async.engine.common.JsonHelper;
 
-import java.util.Arrays;
 import java.util.Map;
+import java.util.Set;
 
 import static tsakiris.fotis.async.engine.common.Consts.*;
-import static tsakiris.fotis.async.engine.common.UrlConverter.addHeaders;
 import static tsakiris.fotis.async.engine.common.UrlConverter.urlConverter;
+import static tsakiris.fotis.async.engine.controllers.TaskController.RETRY_PATH;
 
 public class QuartzJob implements org.quartz.Job {
 
@@ -27,33 +26,25 @@ public class QuartzJob implements org.quartz.Job {
 
         // Extract data from job
         Map<String, String> properties = (Map<String, String>) context.getMergedJobDataMap().get(Map.class.getCanonicalName());
+        Set<String> taskIds = (Set<String>) context.getMergedJobDataMap().get(Task.class.getCanonicalName());
 
-        final String url = urlConverter(
-                DEFAULT_PROTOCOL,
-                properties.get(SERVER_IP),
-                properties.get(SERVER_PORT),
-                properties.get(SERVER_CONTEXT_PATH)
-        );
+        taskIds.forEach(taskId -> {
+            final String url = urlConverter(
+                    DEFAULT_PROTOCOL,
+                    properties.get(SERVER_IP),
+                    properties.get(SERVER_PORT),
+                    properties.get(SERVER_CONTEXT_PATH) + RETRY_PATH + "/" + taskId
+            );
 
-        try {
-            final HttpResponse<String> httpResponse =
-                    addHeaders(Unirest.post(url), Arrays.asList(new KeyValue("Content-Type", "application/json"))).body(JsonHelper.convert(new Task(
-                            null,
-                            null,
-                            null,
-                            "http",
-                            "httpbin.org",
-                            "/ip",
-                            "80",
-                            Method.GET,
-                            null,
-                            null
-                    ))).asString();
-        } catch (UnirestException e) {
-            LOGGER.error("UnirestException", e);
-        }
+            try {
+                final HttpResponse<String> httpResponse =
+                        Unirest.post(url).asString();
+            } catch (UnirestException e) {
+                LOGGER.error("UnirestException", e);
+            }
 
-        System.err.println("Hello World!  QuartzJob is executing.");
+            System.err.println("Hello World!  QuartzJob is executing.");
+        });
 
     }
 }

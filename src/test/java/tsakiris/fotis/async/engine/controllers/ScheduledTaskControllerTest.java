@@ -34,7 +34,7 @@ public class ScheduledTaskControllerTest extends AbstractControllerTest {
         this.mockMvc.perform(post(ScheduledTaskController.SVC_PATH)
                 .header(Consts.APPLICATION_HEADER, Consts.APP_NAME)
                 .contentType(contentTypeJson)
-                .content(json(new ScheduledTask(null,null, "* * * * *"
+                .content(json(new ScheduledTask(null, null, null, "* * * * *"
                 ))))
                 .andExpect(status().isCreated())
                 .andExpect(content().contentType(contentTypeJson))

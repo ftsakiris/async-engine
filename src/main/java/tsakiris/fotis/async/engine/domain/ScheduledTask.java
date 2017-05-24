@@ -10,17 +10,17 @@ public class ScheduledTask extends AbstractTask {
     private final String taskId;
     private final String cron;
 
-    public ScheduledTask() {
-        this(null, null, null, null);
-    }
-
-    public ScheduledTask(String id, String description, String taskId, String cron) {
-        super(id, description);
+    public ScheduledTask(String id, String description, String taskGroupId, String taskId, String cron) {
+        super(id, description, taskGroupId);
         this.taskId = taskId;
         this.cron = cron;
     }
 
-    public ScheduledTask(String description, String taskId, String cron) {
-        this(null, description, taskId, cron);
+    public ScheduledTask() {
+        this(null, null, null, null);
+    }
+
+    public ScheduledTask(String description, String taskGroupId, String taskId, String cron) {
+        this(null, description, taskGroupId, taskId, cron);
     }
 }

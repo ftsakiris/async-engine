@@ -17,11 +17,12 @@ import tsakiris.fotis.async.engine.domain.QuartzJob;
 import tsakiris.fotis.async.engine.domain.ScheduledTask;
 import tsakiris.fotis.async.engine.domain.Task;
 import tsakiris.fotis.async.engine.persistence.ScheduledTaskRepository;
-import tsakiris.fotis.async.engine.persistence.TaskRepository;
 
 import java.text.ParseException;
+import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Map;
+import java.util.Set;
 
 import static org.quartz.CronScheduleBuilder.cronSchedule;
 import static org.quartz.JobBuilder.newJob;
@@ -41,9 +42,6 @@ public class ScheduledTaskService extends AbstractService {
     @Autowired
     private ScheduledTaskRepository scheduledTaskRepository;
 
-    @Autowired
-    private TaskRepository taskRepository;
-
     private Map<String, String> properties;
 
     public ScheduledTaskService() throws SchedulerException {
@@ -57,7 +55,7 @@ public class ScheduledTaskService extends AbstractService {
 
     public ScheduledTask create(ScheduledTask scheduledTask) {
         try {
-            scheduledTaskRepository.saveTask(scheduledTask);
+            scheduledTaskRepository.saveEntity(scheduledTask);
             createQuartzJob(scheduledTask);
         } catch (SchedulerException | ParseException e) {
             LOGGER.error("SchedulerException | ParseException", e);
@@ -75,8 +73,9 @@ public class ScheduledTaskService extends AbstractService {
 
         job.getJobDataMap().put(Map.class.getCanonicalName(), properties);
 
-        final Task task = taskRepository.findOne(scheduledTask.getTaskId());
-        job.getJobDataMap().put(Task.class.getCanonicalName(), task);
+        Set<String> taskIds = new HashSet<>();
+        taskIds.add(scheduledTask.getTaskId());
+        job.getJobDataMap().put(Task.class.getCanonicalName(), taskIds);
 
         final CronExpression cronExpression = new CronExpression(parseQuartzCron(scheduledTask.getCron()));
 

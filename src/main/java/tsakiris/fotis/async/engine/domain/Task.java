@@ -7,7 +7,7 @@ import java.util.List;
 
 @Getter
 @Document
-public class Task extends AbstractTask{
+public class Task extends AbstractTask {
 
     private final List<KeyValue> headers;
     private final String protocol;
@@ -18,8 +18,8 @@ public class Task extends AbstractTask{
     private final List<KeyValue> queryParams;
     private final String body;
 
-    public Task(String id, String description, List<KeyValue> headers, String protocol, String domain, String resourcePath, String port, Method method, List<KeyValue> queryParams, String body) {
-        super(id, description);
+    public Task(String id, String description, String taskGroupId, List<KeyValue> headers, String protocol, String domain, String resourcePath, String port, Method method, List<KeyValue> queryParams, String body) {
+        super(id, description, taskGroupId);
         this.headers = headers;
         this.protocol = protocol;
         this.domain = domain;
@@ -31,10 +31,10 @@ public class Task extends AbstractTask{
     }
 
     public Task() {
-        this(null, null, null, null, null, null, null, null, null, null);
+        this(null, null, null, null, null, null, null, null, null, null, null);
     }
 
-    public Task(String description, List<KeyValue> headers, String protocol, String domain, String resourcePath, String port, Method method, List<KeyValue> queryParams, String body) {
-        this(null, description, headers, protocol, domain, resourcePath, port, method, queryParams, body);
+    public Task(String description, String taskGroupId, List<KeyValue> headers, String protocol, String domain, String resourcePath, String port, Method method, List<KeyValue> queryParams, String body) {
+        this(null, description, taskGroupId, headers, protocol, domain, resourcePath, port, method, queryParams, body);
     }
 }
