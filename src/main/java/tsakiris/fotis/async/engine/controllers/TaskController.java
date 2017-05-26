@@ -12,7 +12,6 @@ public class TaskController extends AbstractController {
 
     public static final String SVC_PATH = "/task";
     public static final String RETRY_PATH = SVC_PATH + "/retry";
-    public static final String ID_SEARCH_PATH = SVC_PATH + "/search/findById";
 
     @Autowired
     private TaskService taskService;
@@ -24,7 +23,17 @@ public class TaskController extends AbstractController {
 
     @RequestMapping(value = RETRY_PATH + ID_VALUE, method = RequestMethod.GET)
     public ResponseEntity<?> retry(@PathVariable String id) {
-        return response(taskService.run(taskService.get(id)), HttpStatus.CREATED);
+        return response(taskService.run(taskService.get(id)), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = SVC_PATH + ID_VALUE, method = RequestMethod.GET)
+    public ResponseEntity<?> get(@PathVariable String id) {
+        return response(taskService.get(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = SVC_PATH, method = RequestMethod.GET)
+    public ResponseEntity<?> getAll() {
+        return response(taskService.getAll(), HttpStatus.OK);
     }
 
 }

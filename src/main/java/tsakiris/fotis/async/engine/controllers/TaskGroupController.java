@@ -14,7 +14,6 @@ import tsakiris.fotis.async.engine.persistence.TaskGroupRepository;
 public class TaskGroupController extends AbstractController {
 
     public static final String SVC_PATH = "/task/group";
-    public static final String ID_SEARCH_PATH = SVC_PATH + "/search/findById";
 
     @Autowired
     private TaskGroupRepository taskGroupRepository;
@@ -23,6 +22,11 @@ public class TaskGroupController extends AbstractController {
     public ResponseEntity<?> create(@RequestBody TaskGroup taskGroup) {
         taskGroupRepository.saveEntity(taskGroup);
         return response(taskGroup, HttpStatus.CREATED);
+    }
+
+    @RequestMapping(value = SVC_PATH, method = RequestMethod.GET)
+    public ResponseEntity<?> getAll() {
+        return response(taskGroupRepository.findAll(), HttpStatus.OK);
     }
 
 }

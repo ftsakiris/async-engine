@@ -10,6 +10,7 @@ public abstract class AbstractController<T> {
     protected static final String PAGE = "page";
     protected static final String SIZE = "size";
     protected static final String ID_VALUE = "/{id}";
+    protected static final String VALUE = "/{value}";
 
     protected ResponseEntity<T> response(T body, HttpStatus httpStatus) {
         final HttpHeaders httpHeaders = new HttpHeaders();

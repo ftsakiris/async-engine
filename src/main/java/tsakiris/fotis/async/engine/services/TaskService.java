@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import tsakiris.fotis.async.engine.domain.Task;
 import tsakiris.fotis.async.engine.persistence.TaskRepository;
 
+import java.util.List;
+
 import static tsakiris.fotis.async.engine.common.Consts.JMS_DESTINATION;
 
 @Service
@@ -26,6 +28,10 @@ public class TaskService extends AbstractService {
     public Task run(Task task) {
         getJmsTemplate().convertAndSend(JMS_DESTINATION, task);
         return task;
+    }
+
+    public List<Task> getAll() {
+        return taskRepository.findAll();
     }
 
 }

@@ -2,7 +2,6 @@ package tsakiris.fotis.async.engine.services;
 
 import com.mashape.unirest.http.HttpResponse;
 import com.mashape.unirest.http.Unirest;
-import com.mashape.unirest.http.exceptions.UnirestException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -10,9 +9,7 @@ import tsakiris.fotis.async.engine.common.JsonHelper;
 import tsakiris.fotis.async.engine.domain.Method;
 import tsakiris.fotis.async.engine.domain.Task;
 
-import static tsakiris.fotis.async.engine.common.UrlConverter.addHeaders;
-import static tsakiris.fotis.async.engine.common.UrlConverter.addQueryParams;
-import static tsakiris.fotis.async.engine.common.UrlConverter.urlConverter;
+import static tsakiris.fotis.async.engine.common.UrlConverter.*;
 
 @Service
 public class HttpRequestService {
@@ -43,12 +40,11 @@ public class HttpRequestService {
                 return null;
             }
 
-        } catch (UnirestException e) {
-            LOGGER.error("UnirestException", e);
+        } catch (Exception e) {
+            LOGGER.error("Exception", e);
             return e.getMessage();
         }
         return JsonHelper.convert(httpResponse);
     }
-
 
 }

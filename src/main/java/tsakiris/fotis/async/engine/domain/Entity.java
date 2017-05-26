@@ -1,6 +1,5 @@
 package tsakiris.fotis.async.engine.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +13,5 @@ import org.springframework.data.annotation.Id;
 public abstract class Entity {
 
     @Id
-    @JsonIgnore
     private String id;
 }
