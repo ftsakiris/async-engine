@@ -1,13 +1,13 @@
 import {RouterModule, Routes} from "@angular/router";
-import {AdministrationComponent} from "./views/administration/administration.component";
+import {TaskComponent} from "./views/task/task.component";
+import {ScheduledComponent} from "./views/scheduled/scheduled.component";
 import {SettingsComponent} from "./views/settings/settings.component";
-import {QueriesComponent} from "app/views/queries/queries.component";
 
 const APP_ROUTES: Routes = [
-    { path: 'settings', component: SettingsComponent}
-  , { path: 'administration', component: AdministrationComponent}
-  , { path: 'queries', component: QueriesComponent}
-  , { path: '**', redirectTo: '/administration', pathMatch: 'full'}
+    { path: 'scheduled', component: ScheduledComponent}
+  , { path: 'task', component: TaskComponent}
+  , { path: 'settings', component: SettingsComponent}
+  , { path: '**', redirectTo: '/task', pathMatch: 'full'}
 ];
 
 export const routing = RouterModule.forRoot(APP_ROUTES);

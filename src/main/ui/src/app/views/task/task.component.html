@@ -1,0 +1,94 @@
+<p-growl [value]="msgs"></p-growl>
+
+<form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="description">description</label>
+        <input type="text"
+               class="form-control"
+               id="description"
+               formControlName="description">
+      </div>
+      <div class="form-group">
+        <label for="taskGroupId">taskGroupId</label>
+        <input type="text"
+               class="form-control"
+               id="taskGroupId"
+               formControlName="taskGroupId">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="protocol">protocol</label>
+        <input type="text"
+               class="form-control"
+               id="protocol"
+               formControlName="protocol">
+      </div>
+      <div class="form-group">
+        <label for="domain">domain</label>
+        <input type="text"
+               class="form-control"
+               id="domain"
+               formControlName="domain">
+      </div>
+      <div class="form-group">
+        <label for="headers">headers</label>
+        <input type="text"
+               class="form-control"
+               id="headers"
+               formControlName="headers">
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-group">
+        <label for="queryParams">queryParams</label>
+        <input type="text"
+               class="form-control"
+               id="queryParams"
+               formControlName="queryParams">
+      </div>
+      <div class="form-group">
+        <label for="resourcePath">resourcePath</label>
+        <input type="text"
+               class="form-control"
+               id="resourcePath"
+               formControlName="resourcePath">
+      </div>
+      <div class="form-group">
+        <label for="port">port</label>
+        <input type="text"
+               class="form-control"
+               id="port"
+               formControlName="port">
+      </div>
+      <div class="form-group">
+        <label for="method">method</label>
+        <input type="text"
+               class="form-control"
+               id="method"
+               formControlName="method">
+      </div>
+      <div class="form-group">
+        <label for="body">body</label>
+        <input type="text"
+               class="form-control"
+               id="body"
+               formControlName="body">
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-8"></div>
+    <div class="col-md-4 navbar-right">
+      <button type="submit" class="btn btn-primary" [disabled]="taskForm.invalid">Αποθήκευση</button>
+    </div>
+  </div>
+</form>
+
+
+

@@ -3,6 +3,7 @@ import {Http} from "@angular/http";
 import {Consts} from "../consts";
 import 'rxjs/Rx';
 import {Rest} from "../rest";
+import Task = Domain.Task;
 
 @Injectable()
 export class ApiService {
@@ -10,20 +11,8 @@ export class ApiService {
   constructor(private http: Http) {
   }
 
-  getClientSettings() {
-    return Rest.get(Consts.SETTINGS + Consts.CLIENT, this.http);
-  }
-
-  updateClientSettings(data: any) {
-    return Rest.post(Consts.SETTINGS + Consts.CLIENT, data, this.http);
-  }
-
-  updateClientSettingsRS(data: any) {
-    return Rest.post(Consts.SETTINGS + Consts.CLIENT + Consts.RECEIVE_SEND_PATH, data, this.http);
-  }
-
-  getSettings() {
-    return Rest.get(Consts.SETTINGS, this.http);
+  getTask() {
+    return Rest.get(Consts.TASK, this.http);
   }
 
   getStatus() {
@@ -32,14 +21,6 @@ export class ApiService {
 
   getConsoleLog() {
     return Rest.get(Consts.LOG, this.http);
-  }
-
-  getPendingNumbers() {
-    return Rest.get(Consts.PENDING + Consts.NUMBERS, this.http);
-  }
-
-  retrieve() {
-    return Rest.get(Consts.RETRIEVE, this.http);
   }
 
   send(data: any) {
@@ -54,8 +35,8 @@ export class ApiService {
     return Rest.get(Consts.METADATA + Consts.DBTYPE, this.http);
   }
 
-  saveSettings(data: any) {
-    return Rest.post(Consts.SETTINGS, data, this.http);
+  saveTask(data: Task) {
+    return Rest.post(Consts.TASK, data, this.http);
   }
 
   getQueries() {

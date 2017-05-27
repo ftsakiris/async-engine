@@ -5,10 +5,8 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
-import { AdministrationComponent } from './views/administration/administration.component';
 import { SettingsComponent } from './views/settings/settings.component';
 import { routing } from "./app.routes";
-import { QueriesComponent } from './views/queries/queries.component';
 import {ApiService} from "./services/api.service";
 
 import {DataTableModule, SharedModule, BreadcrumbModule, MenuItem, CalendarModule, AccordionModule,
@@ -16,14 +14,16 @@ import {DataTableModule, SharedModule, BreadcrumbModule, MenuItem, CalendarModul
   PanelMenuModule, DropdownModule, ConfirmDialogModule, ConfirmationService, MessagesModule,
   DialogModule, InputMaskModule
 } from 'primeng/primeng';
+import { TaskComponent } from './views/task/task.component';
+import { ScheduledComponent } from './views/scheduled/scheduled.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AdministrationComponent,
     SettingsComponent,
-    QueriesComponent
+    TaskComponent,
+    ScheduledComponent
   ],
   imports: [
     BrowserModule,

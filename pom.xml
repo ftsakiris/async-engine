@@ -9,7 +9,6 @@
   <groupId>tsakiris.fotis.async-engine</groupId>
   <artifactId>async-engine</artifactId>
   <version>1.0.0</version>
-
   <packaging>jar</packaging>
 
   <parent>
@@ -19,12 +18,22 @@
   </parent>
 
   <properties>
+    <unit.test.skip>true</unit.test.skip>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <build>
     <plugins>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.19.1</version>
+        <configuration>
+          <skipTests>${unit.test.skip}</skipTests>
+        </configuration>
+      </plugin>
 
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -39,45 +48,6 @@
           <source>${maven.compiler.source}</source>
           <target>${maven.compiler.target}</target>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>com.github.eirslett</groupId>
-        <artifactId>frontend-maven-plugin</artifactId>
-        <version>1.3</version>
-
-        <configuration>
-          <nodeVersion>v6.10.1</nodeVersion>o
-          <npmVersion>4.4.1</npmVersion>
-          <workingDirectory>src/main/ui</workingDirectory>
-        </configuration>
-
-        <executions>
-          <execution>
-            <id>install node and npm</id>
-            <goals>
-              <goal>install-node-and-npm</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>npm install</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-          </execution>
-
-          <execution>
-            <id>npm run build</id>
-            <goals>
-              <goal>npm</goal>
-            </goals>
-
-            <configuration>
-              <arguments>run build</arguments>
-            </configuration>
-          </execution>
-        </executions>
       </plugin>
 
     </plugins>
@@ -297,5 +267,85 @@
     </dependency>
 
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>javatots</id>
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>cz.habarta.typescript-generator</groupId>
+            <artifactId>typescript-generator-maven-plugin</artifactId>
+            <version>1.24.318</version>
+            <executions>
+              <execution>
+                <id>generate</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+                <configuration>
+                  <jsonLibrary>jackson2</jsonLibrary>
+                  <classPatterns>tsakiris.fotis.async.engine.domain.**</classPatterns>
+                  <outputFile>src/main/ui/src/app/domain/gen/domain.d.ts</outputFile>
+                  <outputKind>global</outputKind>
+                  <namespace>Domain</namespace>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+
+    <profile>
+      <id>ui</id>
+      <build>
+        <plugins>
+
+          <plugin>
+            <groupId>com.github.eirslett</groupId>
+            <artifactId>frontend-maven-plugin</artifactId>
+            <version>1.3</version>
+
+            <configuration>
+              <nodeVersion>v6.10.1</nodeVersion>
+              <npmVersion>4.4.1</npmVersion>
+              <workingDirectory>src/main/ui</workingDirectory>
+            </configuration>
+
+            <executions>
+              <execution>
+                <id>install node and npm</id>
+                <goals>
+                  <goal>install-node-and-npm</goal>
+                </goals>
+              </execution>
+
+              <execution>
+                <id>npm install</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+              </execution>
+
+              <execution>
+                <id>npm run build</id>
+                <goals>
+                  <goal>npm</goal>
+                </goals>
+
+                <configuration>
+                  <arguments>run build</arguments>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
