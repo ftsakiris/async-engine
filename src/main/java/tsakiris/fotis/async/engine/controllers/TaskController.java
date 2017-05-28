@@ -12,6 +12,7 @@ public class TaskController extends AbstractController {
 
     public static final String SVC_PATH = "/task";
     public static final String RETRY_PATH = SVC_PATH + "/retry";
+    public static final String FIND_BY_TASK_GROUP_ID_PATH = SVC_PATH + "/search/findByTasksGroupId";
 
     @Autowired
     private TaskService taskService;
@@ -34,6 +35,11 @@ public class TaskController extends AbstractController {
     @RequestMapping(value = SVC_PATH, method = RequestMethod.GET)
     public ResponseEntity<?> getAll() {
         return response(taskService.getAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = FIND_BY_TASK_GROUP_ID_PATH + VALUE, method = RequestMethod.GET)
+    public ResponseEntity<?> findByTasksGroupId(@PathVariable String value) {
+        return response(taskService.findByTaskGroupId(value), HttpStatus.OK);
     }
 
 }

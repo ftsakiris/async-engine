@@ -5,7 +5,6 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './views/header/header.component';
-import { SettingsComponent } from './views/settings/settings.component';
 import { routing } from "./app.routes";
 import {ApiService} from "./services/api.service";
 
@@ -21,7 +20,6 @@ import { ScheduledComponent } from './views/scheduled/scheduled.component';
   declarations: [
     AppComponent,
     HeaderComponent,
-    SettingsComponent,
     TaskComponent,
     ScheduledComponent
   ],

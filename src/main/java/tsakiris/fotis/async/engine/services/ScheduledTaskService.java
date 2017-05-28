@@ -42,6 +42,9 @@ public class ScheduledTaskService extends AbstractService {
     @Autowired
     private ScheduledTaskRepository scheduledTaskRepository;
 
+    @Autowired
+    private TaskService taskService;
+
     private Map<String, String> properties;
 
     public ScheduledTaskService() throws SchedulerException {
@@ -75,6 +78,9 @@ public class ScheduledTaskService extends AbstractService {
 
         Set<String> taskIds = new HashSet<>();
         taskIds.add(scheduledTask.getTaskId());
+
+        taskIds.addAll(taskService.findByTaskGroupId(scheduledTask.getTaskGroupId()));
+
         job.getJobDataMap().put(Task.class.getCanonicalName(), taskIds);
 
         final CronExpression cronExpression = new CronExpression(parseQuartzCron(scheduledTask.getCron()));
