@@ -1,4 +1,4 @@
-// Generated using typescript-generator version 1.24.318 on 2017-06-03 10:09:46.
+// Generated using typescript-generator version 1.24.318 on 2017-06-03 10:17:25.
 
 declare namespace Domain {
 

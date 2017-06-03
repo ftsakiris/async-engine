@@ -4,6 +4,7 @@ export class Consts {
 
   static readonly TASK : string = '/task';
   static readonly TASK_GROUP : string = '/task/group';
+  static readonly SCHEDULED_TASK : string = '/scheduledTask';
 
   static readonly ProgressBar = require('progressbar.js');
 }

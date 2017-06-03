@@ -1,3 +1,53 @@
-<p>
-  scheduled works!
-</p>
+<p-growl [value]="msgs"></p-growl>
+
+<form [formGroup]="scheduledGroupForm" (ngSubmit)="onSubmit()">
+  <div class="row">
+
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="description">description</label>
+        <input type="text"
+               class="form-control"
+               id="description"
+               formControlName="description">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="taskGroupId">taskGroupId</label>
+        <input type="text"
+               class="form-control"
+               id="taskGroupId"
+               formControlName="taskGroupId">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="taskId">taskId</label>
+        <input type="text"
+               class="form-control"
+               id="taskId"
+               formControlName="taskId">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="cron">cron</label>
+        <input type="text"
+               class="form-control"
+               id="cron"
+               formControlName="cron">
+      </div>
+    </div>
+
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-4">
+      <button type="submit" class="btn btn-primary" [disabled]="scheduledGroupForm.invalid">Save</button>
+    </div>
+  </div>
+</form>
+
+
+
