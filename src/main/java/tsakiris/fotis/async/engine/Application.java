@@ -27,6 +27,8 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableJms
 public class Application extends RepositoryRestMvcConfiguration {
 
+    public static final String REST_PATH = "/api";
+
     public static ConfigurableApplicationContext configurableApplicationContext;
 
     public static void main(String[] args) {
@@ -57,7 +59,7 @@ public class Application extends RepositoryRestMvcConfiguration {
                 .groupName("api")
                 .apiInfo(apiInfo())
                 .select()
-                .paths(regex("/.*"))
+                .paths(regex(REST_PATH + "/.*"))
                 .build();
     }
 

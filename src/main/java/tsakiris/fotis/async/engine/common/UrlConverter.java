@@ -9,6 +9,7 @@ import tsakiris.fotis.async.engine.domain.KeyValue;
 
 import java.util.List;
 
+// TODO: refactor this, code smell..
 public class UrlConverter {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(UrlConverter.class);

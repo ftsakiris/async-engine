@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RestController;
 import tsakiris.fotis.async.engine.domain.TaskGroup;
 import tsakiris.fotis.async.engine.persistence.TaskGroupRepository;
 
+import static tsakiris.fotis.async.engine.Application.REST_PATH;
+
 @RestController
 public class TaskGroupController extends AbstractController {
 
-    public static final String SVC_PATH = "/task/group";
+    public static final String SVC_PATH = REST_PATH + "/task/group";
 
     @Autowired
     private TaskGroupRepository taskGroupRepository;

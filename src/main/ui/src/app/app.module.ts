@@ -15,13 +15,15 @@ import {DataTableModule, SharedModule, BreadcrumbModule, MenuItem, CalendarModul
 } from 'primeng/primeng';
 import { TaskComponent } from './views/task/task.component';
 import { ScheduledComponent } from './views/scheduled/scheduled.component';
+import { TaskgroupComponent } from './views/taskgroup/taskgroup.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     TaskComponent,
-    ScheduledComponent
+    ScheduledComponent,
+    TaskgroupComponent
   ],
   imports: [
     BrowserModule,

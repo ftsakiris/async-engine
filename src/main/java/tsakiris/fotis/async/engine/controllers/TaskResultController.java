@@ -7,10 +7,12 @@ import org.springframework.web.bind.annotation.*;
 import tsakiris.fotis.async.engine.domain.TaskResult;
 import tsakiris.fotis.async.engine.persistence.TaskResultRepository;
 
+import static tsakiris.fotis.async.engine.Application.REST_PATH;
+
 @RestController
 public class TaskResultController extends AbstractController {
 
-    public static final String SVC_PATH = "/task/result";
+    public static final String SVC_PATH = REST_PATH + "/task/result";
     public static final String FIND_BY_TASK_ID_PATH = SVC_PATH + "/search/findByTaskId";
 
     @Autowired

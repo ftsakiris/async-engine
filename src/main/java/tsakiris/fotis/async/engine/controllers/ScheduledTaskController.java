@@ -13,11 +13,12 @@ import tsakiris.fotis.async.engine.services.ScheduledTaskService;
 
 import java.text.ParseException;
 
+import static tsakiris.fotis.async.engine.Application.REST_PATH;
+
 @RestController
 public class ScheduledTaskController extends AbstractController {
 
-    public static final String SVC_PATH = "/scheduledTask";
-    public static final String ID_SEARCH_PATH = SVC_PATH + "/search/findById";
+    public static final String SVC_PATH = REST_PATH + "/scheduledTask";
 
     @Autowired
     private ScheduledTaskService scheduledTaskService;

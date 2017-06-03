@@ -42,8 +42,6 @@ public class QuartzJob implements org.quartz.Job {
             } catch (UnirestException e) {
                 LOGGER.error("UnirestException", e);
             }
-
-            System.err.println("Hello World!  QuartzJob is executing.");
         });
 
     }

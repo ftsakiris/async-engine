@@ -73,7 +73,7 @@ public class ScheduledTaskService extends AbstractService {
         final JobDetail job = newJob(QuartzJob.class)
                 .withIdentity(genJobKey(scheduledTask))
                 .build();
-
+        // add properties in job
         job.getJobDataMap().put(Map.class.getCanonicalName(), properties);
 
         Set<String> taskIds = new HashSet<>();
@@ -81,10 +81,12 @@ public class ScheduledTaskService extends AbstractService {
 
         taskIds.addAll(taskService.findByTaskGroupId(scheduledTask.getTaskGroupId()));
 
+        // add task ids in job
         job.getJobDataMap().put(Task.class.getCanonicalName(), taskIds);
 
         final CronExpression cronExpression = new CronExpression(parseQuartzCron(scheduledTask.getCron()));
 
+        // prepare trigger with cronjob
         final Trigger trigger = newTrigger()
                 .withIdentity(genTriggerKey(scheduledTask))
                 .startNow()

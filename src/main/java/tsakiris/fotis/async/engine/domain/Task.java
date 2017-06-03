@@ -9,6 +9,7 @@ import java.util.List;
 @Document
 public class Task extends AbstractTask {
 
+    private final String taskGroupId;
     private final List<KeyValue> headers;
     private final String protocol;
     private final String domain;
@@ -19,7 +20,8 @@ public class Task extends AbstractTask {
     private final String body;
 
     public Task(String id, String description, String taskGroupId, List<KeyValue> headers, String protocol, String domain, String resourcePath, String port, Method method, List<KeyValue> queryParams, String body) {
-        super(id, description, taskGroupId);
+        super(id, description);
+        this.taskGroupId = taskGroupId;
         this.headers = headers;
         this.protocol = protocol;
         this.domain = domain;

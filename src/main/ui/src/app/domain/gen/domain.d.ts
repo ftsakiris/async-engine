@@ -1,10 +1,9 @@
-// Generated using typescript-generator version 1.24.318 on 2017-05-28 20:33:11.
+// Generated using typescript-generator version 1.24.318 on 2017-06-03 10:09:46.
 
 declare namespace Domain {
 
     interface AbstractTask extends Entity {
         description: string;
-        taskGroupId: string;
     }
 
     interface Entity {
@@ -20,11 +19,13 @@ declare namespace Domain {
     }
 
     interface ScheduledTask extends AbstractTask {
+        taskGroupId: string;
         taskId: string;
         cron: string;
     }
 
     interface Task extends AbstractTask {
+        taskGroupId: string;
         headers: KeyValue[];
         protocol: string;
         domain: string;
