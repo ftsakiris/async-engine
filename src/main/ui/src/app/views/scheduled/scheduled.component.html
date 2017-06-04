@@ -39,6 +39,9 @@
                formControlName="cron">
       </div>
     </div>
+    <div class="col-md-6">
+      <p-dropdown [options]="tasks" [(ngModel)]="selectedTask" [filter]="true"></p-dropdown>
+    </div>
 
   </div>
   <br>

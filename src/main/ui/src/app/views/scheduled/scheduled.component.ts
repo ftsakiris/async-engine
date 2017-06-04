@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
-import {Message} from "primeng/primeng";
+import {Message, SelectItem} from "primeng/primeng";
 import {ApiService} from "../../services/api.service";
 import ScheduledTask = Domain.ScheduledTask;
+import Task = Domain.Task;
 
 @Component({
   selector: 'app-scheduled',
@@ -12,6 +13,9 @@ import ScheduledTask = Domain.ScheduledTask;
 export class ScheduledComponent implements OnInit {
 
   scheduledGroupForm: FormGroup;
+
+  tasks: SelectItem[];
+  selectedTask: string;
 
   msgs: Message[] = [];
 
@@ -24,6 +28,7 @@ export class ScheduledComponent implements OnInit {
   };
 
   constructor(private apiService: ApiService) {
+    this.tasks = [];
     this.scheduledGroupForm = new FormGroup({
       'description': new FormControl('', Validators.required),
       'taskGroupId': new FormControl(''),
@@ -34,6 +39,7 @@ export class ScheduledComponent implements OnInit {
 
   ngOnInit() {
     // this.getScheduledTask();
+    this.getTasks();
     this.initForm();
   }
 
@@ -42,6 +48,18 @@ export class ScheduledComponent implements OnInit {
     this.scheduledGroupForm.controls['taskGroupId'].setValue(this.scheduledTask.taskGroupId);
     this.scheduledGroupForm.controls['taskId'].setValue(this.scheduledTask.taskId);
     this.scheduledGroupForm.controls['cron'].setValue(this.scheduledTask.cron);
+  }
+
+  getTasks() {
+    this.apiService.getTask().subscribe(
+      (data: Task[]) => {
+        data.forEach(task => {
+          this.tasks.push({label:task.description, value:task.id});
+        });
+      },
+      null,
+      () => this.initForm()
+    );
   }
 
   getScheduledTask() {

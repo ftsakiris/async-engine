@@ -17,6 +17,10 @@ export class ApiService {
     return Rest.get(Consts.TASK, this.http);
   }
 
+  getTasks() {
+    return Rest.get(Consts.TASK, this.http);
+  }
+
   getTaskGroup() {
     return Rest.get(Consts.TASK_GROUP, this.http);
   }
