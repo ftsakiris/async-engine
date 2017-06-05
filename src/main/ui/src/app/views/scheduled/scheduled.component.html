@@ -1,5 +1,13 @@
 <p-growl [value]="msgs"></p-growl>
 
+<div class="col-md-6">
+  <label >Select a task</label>
+  <p-dropdown [options]="tasks" [(ngModel)]="selectedTask" [filter]="true"></p-dropdown>
+</div>
+<div class="col-md-6">
+  <label >Select a task group</label>
+  <p-dropdown [options]="taskGroups" [(ngModel)]="selectedTaskGroup" [filter]="true"></p-dropdown>
+</div>
 <form [formGroup]="scheduledGroupForm" (ngSubmit)="onSubmit()">
   <div class="row">
 
@@ -14,33 +22,12 @@
     </div>
     <div class="col-md-6">
       <div class="form-group">
-        <label for="taskGroupId">taskGroupId</label>
-        <input type="text"
-               class="form-control"
-               id="taskGroupId"
-               formControlName="taskGroupId">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
-        <label for="taskId">taskId</label>
-        <input type="text"
-               class="form-control"
-               id="taskId"
-               formControlName="taskId">
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="form-group">
         <label for="cron">cron</label>
         <input type="text"
                class="form-control"
                id="cron"
                formControlName="cron">
       </div>
-    </div>
-    <div class="col-md-6">
-      <p-dropdown [options]="tasks" [(ngModel)]="selectedTask" [filter]="true"></p-dropdown>
     </div>
 
   </div>

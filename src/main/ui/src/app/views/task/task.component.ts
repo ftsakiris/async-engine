@@ -46,8 +46,6 @@ export class TaskComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.getTask();
-
     this.initForm();
   }
 
@@ -62,16 +60,6 @@ export class TaskComponent implements OnInit {
     this.taskForm.controls['port'].setValue(this.task.port);
     this.taskForm.controls['method'].setValue(this.task.method);
     this.taskForm.controls['body'].setValue(this.task.body);
-  }
-
-  getTask() {
-    this.apiService.getTask().subscribe(
-      (data: Task) => {
-        this.task = data;
-      },
-      null,
-      () => this.initForm()
-    );
   }
 
   onSubmit() {

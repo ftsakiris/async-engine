@@ -4,6 +4,7 @@ import {Message, SelectItem} from "primeng/primeng";
 import {ApiService} from "../../services/api.service";
 import ScheduledTask = Domain.ScheduledTask;
 import Task = Domain.Task;
+import TaskGroup = Domain.TaskGroup;
 
 @Component({
   selector: 'app-scheduled',
@@ -17,6 +18,9 @@ export class ScheduledComponent implements OnInit {
   tasks: SelectItem[];
   selectedTask: string;
 
+  taskGroups: SelectItem[];
+  selectedTaskGroup: string;
+
   msgs: Message[] = [];
 
   scheduledTask: ScheduledTask = {
@@ -29,29 +33,27 @@ export class ScheduledComponent implements OnInit {
 
   constructor(private apiService: ApiService) {
     this.tasks = [];
+    this.taskGroups = [];
     this.scheduledGroupForm = new FormGroup({
       'description': new FormControl('', Validators.required),
-      'taskGroupId': new FormControl(''),
-      'taskId': new FormControl('', Validators.required),
-      'cron': new FormControl('', Validators.required),
+      'cron': new FormControl('', Validators.required)
     })
   }
 
   ngOnInit() {
     // this.getScheduledTask();
     this.getTasks();
+    this.getTaskGroups();
     this.initForm();
   }
 
   initForm() {
     this.scheduledGroupForm.controls['description'].setValue(this.scheduledTask.description);
-    this.scheduledGroupForm.controls['taskGroupId'].setValue(this.scheduledTask.taskGroupId);
-    this.scheduledGroupForm.controls['taskId'].setValue(this.scheduledTask.taskId);
     this.scheduledGroupForm.controls['cron'].setValue(this.scheduledTask.cron);
   }
 
   getTasks() {
-    this.apiService.getTask().subscribe(
+    this.apiService.getTasks().subscribe(
       (data: Task[]) => {
         data.forEach(task => {
           this.tasks.push({label:task.description, value:task.id});
@@ -62,8 +64,20 @@ export class ScheduledComponent implements OnInit {
     );
   }
 
+  getTaskGroups() {
+    this.apiService.getTaskGroups().subscribe(
+      (data: TaskGroup[]) => {
+        data.forEach(taskGroup => {
+          this.taskGroups.push({label:taskGroup.description, value:taskGroup.id});
+        });
+      },
+      null,
+      () => this.initForm()
+    );
+  }
+
   getScheduledTask() {
-    this.apiService.getTask().subscribe(
+    this.apiService.getTasks().subscribe(
       (data: ScheduledTask) => {
         this.scheduledTask = data;
       },
@@ -77,8 +91,8 @@ export class ScheduledComponent implements OnInit {
     this.apiService.saveScheduledTask({
       "id": null,
       "description": value.description,
-      taskGroupId: value.taskGroupId,
-      taskId: value.taskId,
+      taskGroupId: this.selectedTaskGroup,
+      taskId: this.selectedTask,
       cron: value.cron,
     }).subscribe(
       () => {},

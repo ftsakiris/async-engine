@@ -13,15 +13,11 @@ export class ApiService {
   constructor(private http: Http) {
   }
 
-  getTask() {
-    return Rest.get(Consts.TASK, this.http);
-  }
-
   getTasks() {
     return Rest.get(Consts.TASK, this.http);
   }
 
-  getTaskGroup() {
+  getTaskGroups() {
     return Rest.get(Consts.TASK_GROUP, this.http);
   }
 

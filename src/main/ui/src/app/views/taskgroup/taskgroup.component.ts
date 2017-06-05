@@ -36,7 +36,7 @@ export class TaskgroupComponent implements OnInit {
   }
 
   getTaskGroup() {
-    this.apiService.getTaskGroup().subscribe(
+    this.apiService.getTaskGroups().subscribe(
       (data: TaskGroup) => {
         this.taskGroup = data;
       },

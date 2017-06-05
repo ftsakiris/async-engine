@@ -16,6 +16,7 @@ import {DataTableModule, SharedModule, BreadcrumbModule, MenuItem, CalendarModul
 import { TaskComponent } from './views/task/task.component';
 import { ScheduledComponent } from './views/scheduled/scheduled.component';
 import { TaskgroupComponent } from './views/taskgroup/taskgroup.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { TaskgroupComponent } from './views/taskgroup/taskgroup.component';
     TaskgroupComponent
   ],
   imports: [
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpModule,
