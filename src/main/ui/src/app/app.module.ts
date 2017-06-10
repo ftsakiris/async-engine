@@ -8,15 +8,17 @@ import { HeaderComponent } from './views/header/header.component';
 import { routing } from "./app.routes";
 import {ApiService} from "./services/api.service";
 
-import {DataTableModule, SharedModule, BreadcrumbModule, MenuItem, CalendarModule, AccordionModule,
+import {
+  DataTableModule, SharedModule, BreadcrumbModule, MenuItem, CalendarModule, AccordionModule,
   PanelModule, InputTextModule, RadioButtonModule, TooltipModule, FileUploadModule, GrowlModule,
   PanelMenuModule, DropdownModule, ConfirmDialogModule, ConfirmationService, MessagesModule,
-  DialogModule, InputMaskModule
+  DialogModule, InputMaskModule, TreeModule, TreeTableModule
 } from 'primeng/primeng';
 import { TaskComponent } from './views/task/task.component';
 import { ScheduledComponent } from './views/scheduled/scheduled.component';
 import { TaskgroupComponent } from './views/taskgroup/taskgroup.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import { TaskresultComponent } from './views/taskresult/taskresult.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     HeaderComponent,
     TaskComponent,
     ScheduledComponent,
-    TaskgroupComponent
+    TaskgroupComponent,
+    TaskresultComponent
   ],
   imports: [
     BrowserAnimationsModule,
@@ -35,7 +38,7 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     ReactiveFormsModule,
     DataTableModule,
     SharedModule,
-    BreadcrumbModule, CalendarModule, AccordionModule,
+    BreadcrumbModule, CalendarModule, AccordionModule, TreeTableModule,
     PanelModule, InputTextModule, RadioButtonModule, TooltipModule, FileUploadModule, GrowlModule,
     PanelMenuModule, DropdownModule, ConfirmDialogModule, MessagesModule,
     DialogModule, InputMaskModule

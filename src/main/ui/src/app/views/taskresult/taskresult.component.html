@@ -1,0 +1,8 @@
+<p-growl [value]="msgs"></p-growl>
+
+<p-treeTable [value]="tasks" [style]="{'margin-top':'50px'}"
+             (onNodeExpand)="nodeExpand($event)" >
+  <p-header>Task Results</p-header>
+  <p-column field="description" header="Description"></p-column>
+  <p-column field="taskResult" header="Task Result"></p-column>
+</p-treeTable>

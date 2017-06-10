@@ -38,7 +38,7 @@ public class QuartzJob implements org.quartz.Job {
 
             try {
                 final HttpResponse<String> httpResponse =
-                        Unirest.post(url).asString();
+                        Unirest.get(url).asString();
             } catch (UnirestException e) {
                 LOGGER.error("UnirestException", e);
             }

@@ -17,6 +17,14 @@ export class ApiService {
     return Rest.get(Consts.TASK, this.http);
   }
 
+  getTaskResult(id: string) {
+    return Rest.get(Consts.TASK_RESULT + "/" + id, this.http);
+  }
+
+  findTaskResultsByTaskId(taskId: string) {
+    return Rest.get(Consts.FIND_BY_TASK_ID_PATH + "/" + taskId, this.http);
+  }
+
   getTaskGroups() {
     return Rest.get(Consts.TASK_GROUP, this.http);
   }
