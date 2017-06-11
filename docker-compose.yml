@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  async_engine_server:
+    restart: unless-stopped
+    container_name: async_engine_server
+    ports:
+      - "80:8081"
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    depends_on:
+      - mongo
+    networks:
+      tsakiris_net:
+  mongo:
+    image: mongo
+    container_name: async_mongo
+    ports:
+          - "27017:27017"
+    restart: unless-stopped
+    volumes:
+        - '/data/db:/data/db'
+        - '/data/configdb:/data/configdb'
+    networks:
+      tsakiris_net:
+
+networks:
+  tsakiris_net:
+    driver: bridge
