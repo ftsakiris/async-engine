@@ -9,6 +9,8 @@ import tsakiris.fotis.async.engine.domain.Task;
 import tsakiris.fotis.async.engine.domain.TaskResult;
 import tsakiris.fotis.async.engine.persistence.TaskResultRepository;
 
+import java.util.Date;
+
 import static tsakiris.fotis.async.engine.common.Consts.ASYNC_ENGINE_FACTORY;
 import static tsakiris.fotis.async.engine.common.Consts.JMS_DESTINATION;
 
@@ -27,7 +29,7 @@ public class TaskReceiver {
     public void receiveMessage(Task task) {
         LOGGER.info("Received <" + task.getResourcePath() + ">");
         String result = httpRequestService.startRequest(task);
-        taskResultRepository.saveEntity(new TaskResult(task.getId(), result));
+        taskResultRepository.saveEntity(new TaskResult(task.getId(), new Date(), result));
         LOGGER.info(result);
     }
 

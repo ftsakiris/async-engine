@@ -316,7 +316,7 @@
     </profile>
 
     <profile>
-      <id>ui</id>
+      <id>build-ui</id>
       <build>
         <plugins>
 

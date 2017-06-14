@@ -44,6 +44,7 @@ export class TaskresultComponent implements OnInit {
             {"data":
               {
                 description: taskResult.id,
+                date: taskResult.dateTime,
                 taskResult: taskResult.taskResult
               }
             })

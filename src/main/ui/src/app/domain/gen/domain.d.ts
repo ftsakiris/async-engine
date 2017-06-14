@@ -1,4 +1,4 @@
-// Generated using typescript-generator version 1.24.318 on 2017-06-03 10:17:25.
+// Generated using typescript-generator version 1.24.318 on 2017-06-14 21:26:42.
 
 declare namespace Domain {
 
@@ -41,6 +41,7 @@ declare namespace Domain {
 
     interface TaskResult extends Entity {
         taskId: string;
+        dateTime: Date;
         taskResult: string;
     }
 
