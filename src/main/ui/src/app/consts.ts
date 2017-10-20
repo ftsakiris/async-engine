@@ -1,6 +1,6 @@
 export class Consts {
-  static readonly API_URL: string = 'http://localhost:8081/api';
-  // static readonly API_URL: string = window.location.protocol + "//" + window.location.host + '/api';
+  // static readonly API_URL: string = 'http://localhost:8081/api';
+  static readonly API_URL: string = window.location.protocol + "//" + window.location.host + '/api';
 
   static readonly TASK : string = '/task';
   static readonly TASK_RESULT : string = Consts.TASK + '/result';
