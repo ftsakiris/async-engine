@@ -1,13 +1,12 @@
-<configuration monitorInterval="1">
+<configuration>
 
-    <property name="FILE_LOG_PATTERN" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n"/>
-    <property name="SERVING_FILE_LOG_PATTERN" value="%d{HH:mm:ss} %-5level %logger{36} - %msg%n"/>
+    <property name="FILE_LOG_PATTERN"
+              value="%d{dd-MM-yyyy HH:mm:ss.SSS} %magenta([%thread]) %highlight(%-5level) %logger{36}.%M - %msg%n" />
+    <property name="SERVING_FILE_LOG_PATTERN" value="%d{HH:mm:ss} %-5level %logger{36} - %msg%n" />
 
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <param name="append" value="false"/>
-
         <encoder>
-            <Pattern>${FILE_LOG_PATTERN}</Pattern>
+            <pattern>${FILE_LOG_PATTERN}</pattern>
         </encoder>
     </appender>
 
@@ -17,16 +16,13 @@
         </encoder>
 
         <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>async-engine.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <fileNamePattern>logs/async-engine.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>7</maxHistory>
         </rollingPolicy>
     </appender>
 
-    <logger name="tsakiris.fotis.async.engine">
-        <level value="ALL"/>
-        <!--<level value="INFO"/>-->
-        <appender-ref ref="STDOUT"/>
-        <appender-ref ref="SERVING_FILE"/>
-    </logger>
-
+    <root level="info">
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="SERVING_FILE" />
+    </root>
 </configuration>
