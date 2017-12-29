@@ -20,8 +20,7 @@ public class TaskService extends AbstractService {
 
     public Task create(Task task) {
         taskRepository.saveEntity(task);
-        run(task);
-        return task;
+        return run(task);
     }
 
     public Task get(String id) {
@@ -29,6 +28,9 @@ public class TaskService extends AbstractService {
     }
 
     public Task run(Task task) {
+        if (CommonUtils.isEmpty(task)) {
+            return null;
+        }
         getJmsTemplate().convertAndSend(JMS_DESTINATION, task);
         return task;
     }
@@ -42,9 +44,7 @@ public class TaskService extends AbstractService {
         if (CommonUtils.isEmpty(value)) {
             return taskIds;
         }
-        taskRepository.findByTaskGroupId(value).forEach(task -> {
-            taskIds.add(task.getId());
-        });
+        taskRepository.findByTaskGroupId(value).forEach(task -> taskIds.add(task.getId()));
         return taskIds;
     }
 }
